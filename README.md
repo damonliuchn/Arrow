@@ -71,7 +71,7 @@ Arrow 是一个轻量级的Android DI 库，没有额外的引用。
 为什么
 --------
 
-最流行的Android DI框架中，Roboguice已经不再维护了，Dagger2使用有点复杂，需要写component interface（所以我写了一个自动生成component interface的库[Dagger2Plus](https://github.com/MasonLiuChn/Dagger2Plus），而且Dagger2使用代码生成，对于有代码洁癖的人来说不太喜欢。Arrow使用反射，在目前动不动就8核10核2G3G的硬件环境下，反射带来的性能缺陷不再明显，作为个人来说还是能接受的。
+最流行的Android DI框架中，Roboguice已经不再维护了，Dagger2使用有点复杂，需要写component interface（所以我写了一个自动生成component interface的库[Dagger2Plus](https://github.com/MasonLiuChn/Dagger2Plus))，而且Dagger2使用代码生成，对于有代码洁癖的人来说不太喜欢。Arrow使用反射，在目前动不动就8核10核2G3G的硬件环境下，反射带来的性能缺陷不再明显，作为个人来说还是能接受的。
 
 特性
 --------

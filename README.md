@@ -4,7 +4,7 @@ Arrow is a lightweight dependency injection library for Android.
 
 Why
 --------
-Roboguice is no longer maintained, Dagger2 is a bit complicated, need to write component interface (so I wrote an automatic generation of component interface [Dagger2Plus] (https://github.com/MasonLiuChn/Dagger2Plus)  ）
+Roboguice is no longer maintained, Dagger2 is a bit complicated, need to write component interface (so I wrote an automatic generation of component interface [Dagger2Plus](https://github.com/MasonLiuChn/Dagger2Plus)
 
 
 Feature
@@ -57,6 +57,9 @@ call this method after Inject action
 
 8.@InjectExtra:
 inject Bundle into Activity or Fragment
+
+9. getInstance:
+Arrow.getInstance(Class clazz)
 
 Arrow+DataBinding
 --------
@@ -124,6 +127,12 @@ Inject 结束后触发该函数
 8、@InjectExtra
 支持Activity和Fragment 注入Bundle
 
+9.getInstance
+
+直接获取一个实例，可以是单例
+
+Arrow.getInstance(Class clazz)
+
 Arrow+DataBinding
 --------
 使用DataBinding替代butterknife
@@ -139,7 +148,7 @@ repositories {
     }
 }
 dependencies {
-	compile 'com.github.MasonLiuChn:Arrow:1.0.0'
+	compile 'com.github.MasonLiuChn:Arrow:1.1.0'
 }
 ```
 

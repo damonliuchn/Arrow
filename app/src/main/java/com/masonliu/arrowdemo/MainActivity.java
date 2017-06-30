@@ -34,8 +34,11 @@ public class MainActivity extends AppCompatActivity {
 
     @OnClick(R.id.button)
     public void onClickTest() {
-        Toast.makeText(this, c.foo(), Toast.LENGTH_LONG).show();
-        Toast.makeText(this, application.toString(), Toast.LENGTH_LONG).show();
+        //Toast.makeText(this, c.foo(), Toast.LENGTH_LONG).show();
+        //Toast.makeText(this, application.toString(), Toast.LENGTH_LONG).show();
+        Toast.makeText(this, Arrow.getInstance(A.class).print(),1).show();
+        Toast.makeText(this, Arrow.getInstance(C.class).foo(),1).show();
+
     }
 
     @OnClick(R.id.go_fragment)

@@ -54,4 +54,9 @@ public class ClassInfo {
         }
         return false;
     }
+
+    @Override
+    public int hashCode() {
+        return clazz.getName().hashCode();
+    }
 }

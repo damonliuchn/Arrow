@@ -8,8 +8,10 @@ import android.view.ViewGroup;
 
 import com.masonliu.arrow.handler.ContentViewHandler;
 import com.masonliu.arrow.handler.OnClickHandler;
-import com.masonliu.arrow.handler.field.InjectExtraHandler;
-import com.masonliu.arrow.handler.field.InjectFieldHandler;
+import com.masonliu.arrow.handler.InjectExtraHandler;
+import com.masonliu.arrow.handler.InjectFieldHandler;
+import com.masonliu.arrow.handler.OnPostInjectHandler;
+import com.masonliu.arrow.model.ClassInfo;
 
 /*
 1、对象注入
@@ -34,10 +36,11 @@ public class Arrow {
     }
 
     public static void inject(Object target) {
-        InjectFieldHandler.inject(target);
         ContentViewHandler.inject(target);
+        InjectFieldHandler.inject(target);
         OnClickHandler.inject(target);
         InjectExtraHandler.inject(target);
+        OnPostInjectHandler.inject(target);
     }
 
     public static View injectContentView(Object fragment,
@@ -52,5 +55,8 @@ public class Arrow {
             throw new RuntimeException("Arrow not init");
         }
         return application;
+    }
+    public static <Q> Q getInstance(Class<Q> tClass) {
+       return (Q)(InjectFieldHandler.getNoProviderInstance(new ClassInfo(tClass)));
     }
 }

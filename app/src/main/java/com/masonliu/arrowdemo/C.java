@@ -8,6 +8,7 @@ import com.masonliu.arrow.annotation.OnPostInject;
 import javax.inject.Inject;
 
 public class C {
+    int aa;
     @Inject
     private Application application;
 
@@ -21,6 +22,6 @@ public class C {
     }
 
     public String foo() {
-        return "I am C" + application.toString();
+        return "I am C" + application.toString()+(aa++);
     }
 }

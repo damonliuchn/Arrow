@@ -9,6 +9,9 @@ public class FieldInfo {
     private Class clazz;
     private Field field;
     private boolean isProviderType;
+    /**
+     *  classInfo 始终是最真实需要的类型，会自动透过Provider那一层
+     */
     private ClassInfo classInfo;
 
     public FieldInfo(Field field) {

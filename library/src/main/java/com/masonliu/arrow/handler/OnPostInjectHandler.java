@@ -1,4 +1,4 @@
-package com.masonliu.arrow.handler.field;
+package com.masonliu.arrow.handler;
 
 import com.masonliu.arrow.annotation.OnPostInject;
 
@@ -9,7 +9,7 @@ import java.lang.reflect.Method;
  */
 
 public class OnPostInjectHandler {
-    static void inject(Object target) {
+    public static void inject(Object target) {
         Method[] methods = target.getClass().getMethods();
         for (Method method : methods) {
             OnPostInject annotation = method.getAnnotation(OnPostInject.class);

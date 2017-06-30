@@ -1,6 +1,7 @@
-package com.masonliu.arrow.handler.field;
+package com.masonliu.arrow.handler;
 
 import com.masonliu.arrow.Arrow;
+import com.masonliu.arrow.provider.DefaultProvidersModule;
 import com.masonliu.arrow.model.ClassInfo;
 import com.masonliu.arrow.model.FieldInfo;
 
@@ -36,11 +37,15 @@ public class InjectFieldHandler {
         for (FieldInfo fieldInfo : fieldInfosMap.get(target.getClass())) {
             Field field = fieldInfo.getField();
             try {
-                field.set(target, fieldInfo.isProviderType() ? provider(fieldInfo.getClassInfo(), null) : provider(fieldInfo.getClassInfo(), null).get());
+                field.set(target, fieldInfo.isProviderType() ? provider(fieldInfo.getClassInfo(), null) : getNoProviderInstance(fieldInfo.getClassInfo()));
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
+    }
+
+    public static Object getNoProviderInstance(ClassInfo classInfo) {
+        return provider(classInfo, null).get();
     }
 
     private static List<FieldInfo> getFieldInfos(Class clazz) {
@@ -83,7 +88,6 @@ public class InjectFieldHandler {
                         try {
                             Object object = classInfo.getConstructor().newInstance(getParamsInstance(paramProviders));
                             Arrow.inject(object);
-                            OnPostInjectHandler.inject(object);
                             return object;
                         } catch (Exception e) {
                             e.printStackTrace();

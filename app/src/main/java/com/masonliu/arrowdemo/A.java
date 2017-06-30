@@ -6,13 +6,13 @@ import javax.inject.Singleton;
 @Singleton
 public class A {
     final B b;
-
+    int aa;
     @Inject
     public A(B b) {
         this.b = b;
     }
 
     public String print() {
-        return "I am A";
+        return "I am A"+(aa++);
     }
 }

@@ -1,4 +1,4 @@
-package com.masonliu.arrow.handler.field;
+package com.masonliu.arrow.handler;
 
 import android.app.Activity;
 import android.app.Fragment;

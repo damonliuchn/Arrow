@@ -10,12 +10,15 @@ Roboguice is no longer maintained, Dagger2 is a bit complicated, need to write c
 Feature
 --------
 1.@Inject:
+
 inject object
 
 2.@Singleton:
+
 inject singleton object
 
 3.Provider Interface:
+
 avoid circular dependency
 for example：
 ```java
@@ -44,22 +47,30 @@ public class B {
 ```
 
 4.Application:
+
 inject application，support to inject manager for future
 
 5.@OnClick:
+
 View setOnClickListener
 
 6.@ContentView:
+
 Activity or Fragment setContentView
 
 7.@OnPostInject:
+
 call this method after Inject action
 
 8.@InjectExtra:
+
 inject Bundle into Activity or Fragment
 
-9. getInstance:
+9.getInstance:
+
+```
 Arrow.getInstance(Class clazz)
+```
 
 Arrow+DataBinding
 --------
@@ -79,12 +90,15 @@ Arrow 是一个轻量级的Android DI 库，没有额外的引用。
 特性
 --------
 1、@Inject
+
 对象注入
 
 2、@Singleton
+
 单例对象注入
 
 3、Provider 接口
+
 处理循环依赖
 例如：
 ```java
@@ -113,26 +127,31 @@ public class B {
 ```
 
 4、Application注入
+
 后续加入各种Service Manager的注入
 
 5、@OnClick
+
 View点击事件处理
 
 6、@ContentView
+
 支持Activity和Fragment setContentView
 
 7、@OnPostInject
+
 Inject 结束后触发该函数
 
 8、@InjectExtra
+
 支持Activity和Fragment 注入Bundle
 
-9.getInstance
+9、getInstance
 
 直接获取一个实例，可以是单例
-
+```
 Arrow.getInstance(Class clazz)
-
+```
 Arrow+DataBinding
 --------
 使用DataBinding替代butterknife

@@ -1,5 +1,6 @@
 package com.masonliu.arrow;
 
+import android.app.Activity;
 import android.app.Application;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -7,9 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.masonliu.arrow.handler.ContentViewHandler;
-import com.masonliu.arrow.handler.OnClickHandler;
 import com.masonliu.arrow.handler.InjectExtraHandler;
 import com.masonliu.arrow.handler.InjectFieldHandler;
+import com.masonliu.arrow.handler.OnClickHandler;
 import com.masonliu.arrow.handler.OnPostInjectHandler;
 import com.masonliu.arrow.model.ClassInfo;
 
@@ -25,6 +26,7 @@ import com.masonliu.arrow.model.ClassInfo;
 6、Extra注入
 8、
  */
+
 /**
  * Created by liumeng on 16/11/30.
  */
@@ -56,7 +58,12 @@ public class Arrow {
         }
         return application;
     }
+
     public static <Q> Q getInstance(Class<Q> tClass) {
-       return (Q)(InjectFieldHandler.getNoProviderInstance(new ClassInfo(tClass)));
+        return (Q) (InjectFieldHandler.getNoProviderInstance(new ClassInfo(tClass)));
+    }
+
+    public static View getContentView(Activity activity) {
+        return ((ViewGroup) (activity.findViewById(android.R.id.content))).getChildAt(0);
     }
 }

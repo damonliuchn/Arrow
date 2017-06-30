@@ -167,7 +167,7 @@ repositories {
     }
 }
 dependencies {
-	compile 'com.github.MasonLiuChn:Arrow:1.1.0'
+	compile 'com.github.MasonLiuChn:Arrow:1.1.1'
 }
 ```
 

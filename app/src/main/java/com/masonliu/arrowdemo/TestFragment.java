@@ -56,11 +56,11 @@ public class TestFragment extends Fragment {
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Arrow.inject(this);
     }
 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = Arrow.injectContentView(this, inflater, container, savedInstanceState);
-        return view != null ? view : super.onCreateView(inflater, container, savedInstanceState);
+        return Arrow.injectContentView(this, inflater, container, savedInstanceState);
     }
 
     public void onViewCreated(View view, Bundle savedInstanceState) {

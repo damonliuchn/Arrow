@@ -33,6 +33,20 @@ public class InjectViewHandler {
         }
     }
 
+    public static void inject(Object target, View view) {
+        //target.getClass() 是单例，fieldInfosMap.containsKey 判断的是hashcode
+        if (!fieldInfosMap.containsKey(target.getClass())) {
+            fieldInfosMap.put(target.getClass(), getFieldInfos(target.getClass()));
+        }
+        for (FieldInfo fieldInfo : fieldInfosMap.get(target.getClass())) {
+            Field field = fieldInfo.getField();
+            if (field.isAnnotationPresent(InjectView.class)) {
+                setField(target, view, field);
+            }
+        }
+    }
+
+
     private static void setField(Object target, Field field) {
         try {
             InjectView annotation = field.getAnnotation(InjectView.class);
@@ -61,4 +75,14 @@ public class InjectViewHandler {
         }
     }
 
+    private static void setField(Object target, View viewParent, Field field) {
+        try {
+            InjectView annotation = field.getAnnotation(InjectView.class);
+            View view = viewParent.findViewById(annotation.value());
+            field.setAccessible(true);
+            field.set(target, view);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

@@ -74,9 +74,11 @@ public class Arrow {
         } else if (target instanceof Fragment || isV4Fragment(target)) {
             InjectViewHandler.inject(target);
             OnClickHandler.inject(target);
-        } else if (target instanceof View) {
-            InjectViewHandler.inject(target);
         }
+    }
+
+    public static void injectView(Object target,View view) {
+        InjectViewHandler.inject(target,view);
     }
 
     public static View injectFragmentOnCreateView(Object fragment, LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

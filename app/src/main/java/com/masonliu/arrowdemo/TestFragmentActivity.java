@@ -28,7 +28,8 @@ public class TestFragmentActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Arrow.inject(this);
+        Arrow.injectNoView(this);
+        Arrow.injectView(this);
         TestFragment fragment = TestFragment.instantiate("testStrArgument", 100, null);
         getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment).commit();
         Toast.makeText(this, "strArgument:" + strArgument, Toast.LENGTH_LONG).show();

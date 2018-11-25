@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.view.View;
 
+import com.masonliu.arrow.Arrow;
 import com.masonliu.arrow.annotation.InjectView;
 import com.masonliu.arrow.model.FieldInfo;
 
@@ -39,16 +40,19 @@ public class InjectViewHandler {
             if (target instanceof Activity) {
                 Activity activity = (Activity) target;
                 view = activity.findViewById(annotation.value());
-            } else if (target instanceof Fragment) {
-                Fragment fragment = (Fragment) target;
-                view = fragment.getView().findViewById(annotation.value());
-            } else {
+            } else if (target instanceof View) {
+                View viewGroup = (View) target;
+                view = viewGroup.findViewById(annotation.value());
+            } else if (Arrow.isV4Fragment(target)) {
                 Class supportFragment = Class.forName("android.support.v4.app.Fragment");
                 if (supportFragment.isAssignableFrom(target.getClass())) {
                     Method getView = supportFragment.getMethod("getView");
                     View viewGroup = (View) getView.invoke(target);
                     view = viewGroup.findViewById(annotation.value());
                 }
+            } else if (target instanceof Fragment) {
+                Fragment fragment = (Fragment) target;
+                view = fragment.getView().findViewById(annotation.value());
             }
             field.setAccessible(true);
             field.set(target, view);

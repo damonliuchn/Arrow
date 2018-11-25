@@ -39,13 +39,22 @@ public class Arrow {
         application = mApplication;
     }
 
-    public static void inject(Object target) {
+    public static void inject(Activity target) {
+        InjectFieldHandler.inject(target);
+        InjectExtraHandler.inject(target);
+        ContentViewHandler.inject(target);
+        InjectViewHandler.inject(target);
+        OnClickHandler.inject(target);
+        OnPostInjectHandler.inject(target);
+    }
+
+    public static void injectNoView(Object target) {
         if (target instanceof Activity) {
             InjectFieldHandler.inject(target);
             InjectExtraHandler.inject(target);
-            ContentViewHandler.inject(target);
-            InjectViewHandler.inject(target);
-            OnClickHandler.inject(target);
+            //ContentViewHandler.inject(target);
+            //InjectViewHandler.inject(target);
+            //OnClickHandler.inject(target);
         } else if (target instanceof Fragment || isV4Fragment(target)) {
             InjectFieldHandler.inject(target);
             InjectExtraHandler.inject(target);
@@ -55,15 +64,23 @@ public class Arrow {
         OnPostInjectHandler.inject(target);
     }
 
-    public static View injectFragmentOnCreateView(Object fragment, LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return ContentViewHandler.inject(fragment, inflater, container, savedInstanceState);
-    }
-
-    public static void injectFragmentOnViewCreated(Object target) {
-        if (target instanceof Fragment || isV4Fragment(target)) {
+    public static void injectView(Object target) {
+        if (target instanceof Activity) {
+            //InjectFieldHandler.inject(target);
+            //InjectExtraHandler.inject(target);
+            ContentViewHandler.inject(target);
             InjectViewHandler.inject(target);
             OnClickHandler.inject(target);
+        } else if (target instanceof Fragment || isV4Fragment(target)) {
+            InjectViewHandler.inject(target);
+            OnClickHandler.inject(target);
+        } else if (target instanceof View) {
+            InjectViewHandler.inject(target);
         }
+    }
+
+    public static View injectFragmentOnCreateView(Object fragment, LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        return ContentViewHandler.inject(fragment, inflater, container, savedInstanceState);
     }
 
     public static Application getApplication() {
@@ -81,7 +98,7 @@ public class Arrow {
         return ((ViewGroup) (activity.findViewById(android.R.id.content))).getChildAt(0);
     }
 
-    private static boolean isV4Fragment(Object target) {
+    public static boolean isV4Fragment(Object target) {
         try {
             Class supportFragment = Class.forName("android.support.v4.app.Fragment");
             if (supportFragment.isAssignableFrom(target.getClass())) {

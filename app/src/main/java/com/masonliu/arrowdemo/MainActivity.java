@@ -28,7 +28,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Arrow.inject(this);
+        Arrow.injectNoView(this);
+        Arrow.injectView(this);
         //TextView textView = (TextView) findViewById(R.id.text);
         textView.setText(a.b.a.get().print() + "ssss");
     }

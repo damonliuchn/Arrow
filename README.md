@@ -176,9 +176,10 @@ dependencies {
 
 ```java
 Arrow.init(Application application);
-Arrow.inject(Object object);
+Arrow.inject(Activity object);
 Arrow.injectFragmentOnCreateView(Object fragment, LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
-Arrow.injectFragmentOnViewCreated(Object target)
+Arrow.injectNoView(Object target)
+Arrow.injectView(Object target)
 ```
 
 

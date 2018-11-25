@@ -93,7 +93,7 @@ public class InjectFieldHandler {
                     public Object get() {
                         try {
                             Object object = classInfo.getConstructor().newInstance(getParamsInstance(paramProviders));
-                            Arrow.inject(object);
+                            Arrow.injectNoView(object);
                             return object;
                         } catch (Exception e) {
                             e.printStackTrace();

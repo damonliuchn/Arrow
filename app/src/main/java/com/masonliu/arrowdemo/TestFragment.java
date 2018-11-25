@@ -60,7 +60,8 @@ public class TestFragment extends Fragment {
 
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Arrow.inject(this);
+        Arrow.injectNoView(this);
+        Arrow.injectView(this);
     }
 
 

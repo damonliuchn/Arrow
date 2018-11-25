@@ -71,6 +71,7 @@ inject Bundle into Activity or Fragment
 ```
 Arrow.getInstance(Class clazz)
 ```
+10.@InjectView
 
 Arrow+DataBinding
 --------
@@ -152,6 +153,8 @@ Inject 结束后触发该函数
 ```
 Arrow.getInstance(Class clazz)
 ```
+10、@InjectView
+
 Arrow+DataBinding
 --------
 使用DataBinding替代butterknife
@@ -167,14 +170,15 @@ repositories {
     }
 }
 dependencies {
-	compile 'com.github.MasonLiuChn:Arrow:1.1.1'
+	compile 'com.github.MasonLiuChn:Arrow:1.1.2'
 }
 ```
 
 ```java
 Arrow.init(Application application);
 Arrow.inject(Object object);
-Arrow.injectContentView(Object fragment, LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState)
+Arrow.injectFragmentOnCreateView(Object fragment, LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+Arrow.injectFragmentOnViewCreated(Object target)
 ```
 
 

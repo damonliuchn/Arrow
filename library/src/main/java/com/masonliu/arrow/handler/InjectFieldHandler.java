@@ -1,9 +1,11 @@
 package com.masonliu.arrow.handler;
 
 import com.masonliu.arrow.Arrow;
-import com.masonliu.arrow.provider.DefaultProvidersModule;
+import com.masonliu.arrow.annotation.InjectExtra;
+import com.masonliu.arrow.annotation.InjectView;
 import com.masonliu.arrow.model.ClassInfo;
 import com.masonliu.arrow.model.FieldInfo;
+import com.masonliu.arrow.provider.DefaultProvidersModule;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
@@ -25,9 +27,9 @@ import javax.inject.Singleton;
  */
 
 public class InjectFieldHandler {
-    private static final Map<ClassInfo, Provider> providers = new ConcurrentHashMap<>();
-    private static final Map<ClassInfo, Object> singletons = new ConcurrentHashMap<>();
-    private static final Map<Class, List<FieldInfo>> fieldInfosMap = new ConcurrentHashMap<>(0);
+    static final Map<ClassInfo, Provider> providers = new ConcurrentHashMap<>();
+    static final Map<ClassInfo, Object> singletons = new ConcurrentHashMap<>();
+    static final Map<Class, List<FieldInfo>> fieldInfosMap = new ConcurrentHashMap<>(0);
 
     public static void inject(Object target) {
         //target.getClass() 是单例，fieldInfosMap.containsKey 判断的是hashcode
@@ -36,10 +38,12 @@ public class InjectFieldHandler {
         }
         for (FieldInfo fieldInfo : fieldInfosMap.get(target.getClass())) {
             Field field = fieldInfo.getField();
-            try {
-                field.set(target, fieldInfo.isProviderType() ? provider(fieldInfo.getClassInfo(), null) : getNoProviderInstance(fieldInfo.getClassInfo()));
-            } catch (Exception e) {
-                e.printStackTrace();
+            if (field.isAnnotationPresent(Inject.class)) {
+                try {
+                    field.set(target, fieldInfo.isProviderType() ? provider(fieldInfo.getClassInfo(), null) : getNoProviderInstance(fieldInfo.getClassInfo()));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
@@ -48,12 +52,14 @@ public class InjectFieldHandler {
         return provider(classInfo, null).get();
     }
 
-    private static List<FieldInfo> getFieldInfos(Class clazz) {
+    static List<FieldInfo> getFieldInfos(Class clazz) {
         Class current = clazz;
         List<FieldInfo> fieldInfos = new ArrayList<>();
         while (!current.equals(Object.class)) {
             for (Field field : current.getDeclaredFields()) {
-                if (field.isAnnotationPresent(Inject.class)) {
+                if (field.isAnnotationPresent(Inject.class)
+                        || field.isAnnotationPresent(InjectExtra.class)
+                        || field.isAnnotationPresent(InjectView.class)) {
                     field.setAccessible(true);
                     fieldInfos.add(new FieldInfo(field));
                 }

@@ -54,13 +54,8 @@ public class TestFragment extends Fragment {
         return f;
     }
 
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        Arrow.inject(this);
-    }
-
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return Arrow.injectContentView(this, inflater, container, savedInstanceState);
+        return Arrow.injectFragmentOnCreateView(this, inflater, container, savedInstanceState);
     }
 
     public void onViewCreated(View view, Bundle savedInstanceState) {

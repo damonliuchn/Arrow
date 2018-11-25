@@ -9,18 +9,19 @@ import android.widget.Toast;
 
 import com.masonliu.arrow.Arrow;
 import com.masonliu.arrow.annotation.ContentView;
+import com.masonliu.arrow.annotation.InjectView;
 import com.masonliu.arrow.annotation.OnClick;
 
 import javax.inject.Inject;
 
 @ContentView(R.layout.activity_main)
 public class MainActivity extends AppCompatActivity {
+    @InjectView(R.id.text)
+    TextView textView;
     @Inject
     private A a;
-
     @Inject
     private C c;
-
     @Inject
     private Application application;
 
@@ -28,16 +29,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Arrow.inject(this);
-        TextView textView = (TextView) findViewById(R.id.text);
-        textView.setText(a.b.a.get().print());
+        //TextView textView = (TextView) findViewById(R.id.text);
+        textView.setText(a.b.a.get().print() + "ssss");
     }
 
     @OnClick(R.id.button)
     public void onClickTest() {
         //Toast.makeText(this, c.foo(), Toast.LENGTH_LONG).show();
         //Toast.makeText(this, application.toString(), Toast.LENGTH_LONG).show();
-        Toast.makeText(this, Arrow.getInstance(A.class).print(),1).show();
-        Toast.makeText(this, Arrow.getInstance(C.class).foo(),1).show();
+        Toast.makeText(this, Arrow.getInstance(A.class).print(), 1).show();
+        Toast.makeText(this, Arrow.getInstance(C.class).foo(), 1).show();
 
     }
 

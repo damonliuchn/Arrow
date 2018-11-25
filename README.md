@@ -166,11 +166,11 @@ Usage
 ```groovy
 repositories {
     maven {
-        url "https://jitpack.io"
+        maven { url "https://github.com/MasonLiuChn/MasonMavenRepository/raw/maven/releases" }
     }
 }
 dependencies {
-	compile 'com.github.MasonLiuChn:Arrow:1.1.4'
+	compile 'com.masonliu:arrow:1.1.5'
 }
 ```
 

@@ -22,3 +22,20 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile group: 'javax.inject', name: 'javax.inject', version: '1'
 }
+
+apply plugin: 'maven'
+apply plugin: 'gmaven'
+gmavenGitRepo {
+    organization = 'MasonLiuChn'
+    repository = 'MasonMavenRepository'
+    branch = 'maven'
+    type = 'releases'
+}
+
+gmavenLibrary {
+    group = 'com.masonliu'
+    artifactId = 'arrow'
+    version = '1.1.5'
+    packaging = 'aar'
+    description = "description"
+}

@@ -24,9 +24,15 @@ public class ClassInfo {
         if (constructor != null) {
             return constructor;
         }
+        //因为有很多构造函数，Arrow不知道选择哪一个，需要用Inject来标记告诉Arrow
+        //优先使用inject标记的 否则使用 无参数构造方法，否则使用第一个构造方法
         Constructor inject = null;
         Constructor noarg = null;
+        Constructor first = null;
         for (Constructor c : clazz.getDeclaredConstructors()) {
+            if (first == null) {
+                first = c;
+            }
             if (c.isAnnotationPresent(Inject.class)) {
                 if (inject == null) {
                     inject = c;
@@ -36,6 +42,7 @@ public class ClassInfo {
             }
         }
         constructor = inject != null ? inject : noarg;
+        constructor = constructor == null ? first : constructor;
         if (constructor != null) {
             constructor.setAccessible(true);
             return constructor;

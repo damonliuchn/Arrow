@@ -1,5 +1,7 @@
 package com.masonliu.arrow.handler;
 
+import android.util.Log;
+
 import com.masonliu.arrow.Arrow;
 import com.masonliu.arrow.annotation.InjectExtra;
 import com.masonliu.arrow.annotation.InjectView;
@@ -81,6 +83,7 @@ public class InjectFieldHandler {
             if (DefaultProvidersModule.getMethod(classInfo) != null) {
                 try {
                     provider = (Provider) DefaultProvidersModule.getMethod(classInfo).invoke(null);
+                    Log.e("ddddd", "ddd");
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -128,7 +131,7 @@ public class InjectFieldHandler {
 
     private static Provider[] paramProvidersInClassConstructor(final ClassInfo classInfo, final Set<ClassInfo> chain) {
         Class[] parameterClasses = classInfo.getConstructor().getParameterTypes();
-        Type[] parameterTypes = classInfo.getConstructor().getGenericParameterTypes();
+        Type[] parameterTypes = classInfo.getConstructor().getGenericParameterTypes();//返回Provider<T> T的类型
         Provider[] providers = new Provider[parameterTypes.length];
 
         for (int i = 0; i < parameterTypes.length; ++i) {

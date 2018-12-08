@@ -9,12 +9,18 @@ import javax.inject.Inject;
 
 public class C {
     int aa;
+
     @Inject
     private Application application;
 
-    public C() {
+    public C(Application application, String aa) {
         Log.i("Arrow", "This is C's constructor");
     }
+
+    public C(Application application) {
+        Log.i("Arrow", "This is C's constructor");
+    }
+
 
     @OnPostInject
     public void onPostInject() {
@@ -22,6 +28,6 @@ public class C {
     }
 
     public String foo() {
-        return "I am C" + application.toString()+(aa++);
+        return "I am C" + application.toString() + (aa++);
     }
 }

@@ -6,6 +6,7 @@ import javax.inject.Singleton;
 
 @Singleton
 public class B {
+    public String title = " imb ";
     Provider<A> a;
 
     @Inject

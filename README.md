@@ -170,7 +170,7 @@ repositories {
     }
 }
 dependencies {
-	compile 'com.masonliu:arrow:1.1.7'
+	compile 'com.masonliu:arrow:1.1.8'
 }
 ```
 

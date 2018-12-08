@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         Arrow.injectNoView(this);
         Arrow.injectView(this);
         //TextView textView = (TextView) findViewById(R.id.text);
-        textView.setText(a.b.a.get().print() + "ssss");
+        textView.setText(a.b.a.get().print() + "\n"+c.foo());
     }
 
     @OnClick(R.id.button)

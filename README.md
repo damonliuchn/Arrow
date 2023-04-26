@@ -183,17 +183,10 @@ Arrow.injectView(Object target)
 Arrow.injectView(Object target,View view)
 ```
 
-
-#Contact me:
-
-- Blog:http://www.masonliu.com
-
-- Email:MasonLiuChn@gmail.com
-
 License
 =======
 
-    Copyright 2016 MasonLiu, Inc.
+    Copyright 2023 DamonLiu, Inc.
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
